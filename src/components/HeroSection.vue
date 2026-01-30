@@ -125,34 +125,6 @@ const scrollToContact = () => {
                     </div>
                     <div class="window-content">
                         <div class="content-layout">
-                            <div class="profile-section">
-                                <div class="profile-image">
-                                    <div class="profile-avatar">
-                                        <div class="avatar-gradient"></div>
-                                        <div class="avatar-dev">
-                                            <div class="dev-hair"></div>
-                                            <div class="dev-face">
-                                                <div class="dev-eyes">
-                                                    <div class="dev-eye left"></div>
-                                                    <div class="dev-eye right"></div>
-                                                </div>
-                                                <div class="dev-glasses">
-                                                    <div class="dev-lens left"></div>
-                                                    <div class="dev-lens right"></div>
-                                                    <div class="dev-bridge"></div>
-                                                </div>
-                                                <div class="dev-nose"></div>
-                                                <div class="dev-mouth"></div>
-                                            </div>
-                                            <div class="dev-shoulders"></div>
-                                        </div>
-                                    </div>
-                                    <div class="profile-status">
-                                        <span class="status-dot"></span>
-                                        <span class="status-text">Available for work</span>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="code-section">
                                 <code>
                   <span class="keyword">const</span> <span class="variable">developer</span> = {<br/>
@@ -167,6 +139,18 @@ const scrollToContact = () => {
                   &nbsp;&nbsp;]<br/>
                   };
                 </code>
+                            </div>
+                            <div class="profile-section">
+                                <div class="profile-image">
+                                    <div class="profile-avatar">
+                                        <img src="../assets/avatar.avif" alt="Adnane Developer Avatar"
+                                            class="avatar-image" />
+                                    </div>
+                                    <div class="profile-status">
+                                        <span class="status-dot"></span>
+                                        <span class="status-text">Available for work</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -793,6 +777,20 @@ const scrollToContact = () => {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-image {
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    border-radius: 15px;
+    object-fit: cover;
+    display: block;
+    background: white;
 }
 
 .avatar-gradient {
@@ -813,172 +811,6 @@ const scrollToContact = () => {
     50% {
         transform: scale(1.1) rotate(10deg);
     }
-}
-
-.avatar-dev {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(180deg, #ffd6a5 0%, #f4a261 100%);
-}
-
-.dev-hair {
-    position: absolute;
-    top: 10px;
-    width: 80%;
-    height: 45%;
-    background: #2d3748;
-    border-radius: 60px 60px 0 0;
-    z-index: 2;
-}
-
-.dev-hair::before {
-    content: '';
-    position: absolute;
-    width: 35%;
-    height: 70%;
-    background: #2d3748;
-    border-radius: 0 100% 0 0;
-    left: -15%;
-    top: 30%;
-}
-
-.dev-hair::after {
-    content: '';
-    position: absolute;
-    width: 35%;
-    height: 70%;
-    background: #2d3748;
-    border-radius: 100% 0 0 0;
-    right: -15%;
-    top: 30%;
-}
-
-.dev-face {
-    position: relative;
-    margin-top: 45px;
-    z-index: 3;
-}
-
-.dev-eyes {
-    display: flex;
-    gap: 22px;
-    margin-bottom: 8px;
-}
-
-.dev-eye {
-    width: 16px;
-    height: 20px;
-    background: white;
-    border-radius: 50%;
-    position: relative;
-    animation: devBlink 5s infinite;
-}
-
-.dev-eye::after {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: #1e293b;
-    border-radius: 50%;
-    top: 7px;
-    left: 4px;
-}
-
-.dev-eye::before {
-    content: '';
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-    top: 6px;
-    left: 7px;
-    z-index: 1;
-}
-
-@keyframes devBlink {
-
-    0%,
-    49%,
-    51%,
-    100% {
-        transform: scaleY(1);
-    }
-
-    50% {
-        transform: scaleY(0.1);
-    }
-}
-
-.dev-glasses {
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 30px;
-    z-index: 4;
-}
-
-.dev-lens {
-    position: absolute;
-    width: 28px;
-    height: 24px;
-    border: 2.5px solid #1e293b;
-    border-radius: 50%;
-    background: rgba(99, 102, 241, 0.2);
-}
-
-.dev-lens.left {
-    left: 0;
-}
-
-.dev-lens.right {
-    right: 0;
-}
-
-.dev-bridge {
-    position: absolute;
-    width: 12px;
-    height: 3px;
-    background: #1e293b;
-    border-radius: 2px;
-    top: 11px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.dev-nose {
-    width: 10px;
-    height: 14px;
-    background: #e9967a;
-    border-radius: 0 0 50% 50%;
-    margin: 12px auto 8px;
-    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.dev-mouth {
-    width: 40px;
-    height: 20px;
-    border: 3px solid #c85a3f;
-    border-top: none;
-    border-radius: 0 0 40px 40px;
-    margin: 0 auto;
-}
-
-.dev-shoulders {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 40px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    border-radius: 50% 50% 0 0;
 }
 
 .profile-status {
