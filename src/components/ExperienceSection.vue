@@ -37,7 +37,8 @@ const { t } = useI18n()
                         </div>
 
                         <div class="technologies">
-                            <span v-for="tech in ('technologies' in exp ? exp.technologies : ['Vue.js', 'TypeScript', 'Node.js', 'MongoDB'])"
+                            <span
+                                v-for="tech in ('technologies' in exp ? exp.technologies : ['Vue.js', 'TypeScript', 'Node.js', 'MongoDB'])"
                                 :key="tech" class="tech-tag">
                                 {{ tech }}
                             </span>
