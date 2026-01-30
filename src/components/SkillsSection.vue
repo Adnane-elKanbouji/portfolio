@@ -73,7 +73,7 @@ const skillCategories = [
                     :style="{ animationDelay: `${index * 0.15}s` }">
                     <div class="category-header">
                         <div class="category-icon">{{ category.icon }}</div>
-                        <h3 class="category-title">{{ t.skills.categories[category.titleKey] }}</h3>
+                        <h3 class="category-title">{{ t.skills.categories[category.titleKey as keyof typeof t.skills.categories] }}</h3>
                     </div>
 
                     <div class="skills-list">

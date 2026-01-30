@@ -11,6 +11,7 @@ let isDeleting = false
 
 const typeEffect = () => {
     const currentRole = t.value.hero.roles[roleIndex]
+    if (!currentRole) return
 
     if (isDeleting) {
         typedText.value = currentRole.substring(0, charIndex - 1)
@@ -564,8 +565,7 @@ const scrollToContact = () => {
     margin-top: 2px;
 }
 
-.window-header @keyframes floatAvatar {
-
+@keyframes floatAvatar {
     0%,
     100% {
         transform: translateY(0px);
