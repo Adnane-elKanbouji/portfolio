@@ -121,7 +121,7 @@ const { t } = useI18n()
     height: 1rem;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
 }
 
 .timeline-content {
@@ -136,7 +136,7 @@ const { t } = useI18n()
 .timeline-content:hover {
     border-color: var(--primary);
     transform: translateX(5px);
-    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.15);
+    box-shadow: 0 10px 40px rgba(59, 130, 246, 0.15);
 }
 
 .experience-header {
@@ -161,7 +161,7 @@ const { t } = useI18n()
 
 .period {
     padding: 0.5rem 1rem;
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(59, 130, 246, 0.1);
     border-radius: 0.5rem;
     color: var(--primary);
     font-size: 0.875rem;
@@ -213,12 +213,12 @@ const { t } = useI18n()
 
 .tech-tag {
     padding: 0.375rem 0.875rem;
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(59, 130, 246, 0.1);
     color: var(--primary);
     border-radius: 0.375rem;
     font-size: 0.875rem;
     font-weight: 500;
-    border: 1px solid rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 @keyframes fadeInLeft {

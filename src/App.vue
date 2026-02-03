@@ -29,8 +29,25 @@ onMounted(() => {
 
   window.addEventListener('scroll', () => {
     showScrollTop.value = window.scrollY > 300
+    handleScrollAnimations()
   })
+
+  // Initialize scroll animations
+  setTimeout(() => {
+    handleScrollAnimations()
+  }, 100)
 })
+
+const handleScrollAnimations = () => {
+  const elements = document.querySelectorAll('.scroll-reveal')
+  elements.forEach((element) => {
+    const rect = element.getBoundingClientRect()
+    const windowHeight = window.innerHeight
+    if (rect.top < windowHeight * 0.85) {
+      element.classList.add('revealed')
+    }
+  })
+}
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -86,12 +103,13 @@ const toggleTheme = () => {
 }
 
 :root {
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --secondary: #8b5cf6;
-  --accent: #ec4899;
-  --bg-dark: #0f172a;
-  --bg-darker: #020617;
+  --primary: #3b82f6;
+  --primary-light: #60a5fa;
+  --primary-dark: #2563eb;
+  --secondary: #1e40af;
+  --accent: #06b6d4;
+  --bg-dark: #0a0e27;
+  --bg-darker: #060918;
   --text-primary: #f1f5f9;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
@@ -99,13 +117,14 @@ const toggleTheme = () => {
 }
 
 [data-theme='light'] {
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --secondary: #8b5cf6;
-  --accent: #ec4899;
+  --primary: #3b82f6;
+  --primary-light: #60a5fa;
+  --primary-dark: #2563eb;
+  --secondary: #1e40af;
+  --accent: #06b6d4;
   --bg-dark: #ffffff;
   --bg-darker: #f8fafc;
-  --text-primary: #0f172a;
+  --text-primary: #0a0e27;
   --text-secondary: #334155;
   --text-muted: #64748b;
   --border: #e2e8f0;
@@ -176,7 +195,7 @@ body {
 
 .scroll-top:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 30px rgba(99, 102, 241, 0.6);
+  box-shadow: 0 6px 30px rgba(59, 130, 246, 0.6);
 }
 
 /* Smooth scroll */
@@ -188,5 +207,110 @@ html {
 ::selection {
   background: var(--primary);
   color: white;
+}
+
+/* Fade In Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Blue Glow Animation */
+@keyframes glowBlue {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8), 0 0 60px rgba(59, 130, 246, 0.5);
+  }
+}
+
+/* Scroll Reveal */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>

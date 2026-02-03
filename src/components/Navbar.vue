@@ -91,12 +91,12 @@ const toggleMobileMenu = () => {
 }
 
 .navbar.scrolled {
-    background: rgba(15, 23, 42, 0.95);
+    background: rgba(10, 14, 39, 0.95);
     backdrop-filter: blur(20px);
     padding: 0.75rem 0;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
-        0 1px 0 rgba(99, 102, 241, 0.1);
-    border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        0 1px 0 rgba(59, 130, 246, 0.1);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
 }
 
 .navbar-container {
@@ -174,7 +174,7 @@ const toggleMobileMenu = () => {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
     transition: width 0.3s ease;
 }
 
@@ -189,12 +189,12 @@ const toggleMobileMenu = () => {
 
 .nav-link-cta {
     padding: 0.75rem 1.75rem;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
     color: white;
     border-radius: 0.5rem;
     gap: 0.5rem;
     font-weight: 600;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
     position: relative;
     overflow: hidden;
 }
@@ -216,7 +216,7 @@ const toggleMobileMenu = () => {
 
 .nav-link-cta:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
     color: white;
 }
 
@@ -301,7 +301,7 @@ const toggleMobileMenu = () => {
         gap: 0;
         padding: 2rem;
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border-left: 1px solid rgba(99, 102, 241, 0.2);
+        border-left: 1px solid rgba(59, 130, 246, 0.2);
         box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
     }
 

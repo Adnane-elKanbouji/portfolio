@@ -166,14 +166,14 @@ const { t } = useI18n()
     font-size: 0.875rem;
     text-decoration: none;
     padding: 0.75rem 1.25rem;
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(59, 130, 246, 0.1);
     border-radius: 0.5rem;
     transition: all 0.3s ease;
     align-self: flex-start;
 }
 
 .credential-link:hover {
-    background: rgba(99, 102, 241, 0.2);
+    background: rgba(59, 130, 246, 0.2);
     transform: translateX(3px);
 }
 

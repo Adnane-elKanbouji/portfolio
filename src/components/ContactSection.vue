@@ -278,7 +278,7 @@ const socialLinks = [
 
 .contact-detail:hover {
     transform: translateX(5px);
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(59, 130, 246, 0.1);
 }
 
 .detail-icon {
@@ -288,7 +288,7 @@ const socialLinks = [
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(59, 130, 246, 0.1);
     border-radius: 0.75rem;
 }
 
@@ -376,7 +376,7 @@ const socialLinks = [
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .form-group textarea {
@@ -395,12 +395,12 @@ const socialLinks = [
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
 }
 
 .submit-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 6px 30px rgba(99, 102, 241, 0.6);
+    box-shadow: 0 6px 30px rgba(59, 130, 246, 0.6);
 }
 
 .submit-btn:disabled {

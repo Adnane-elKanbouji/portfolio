@@ -93,7 +93,7 @@ const filters = ['all', 'web', 'mobile', 'design']
 .section-label {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(59, 130, 246, 0.1);
     color: var(--primary);
     border-radius: 2rem;
     font-size: 0.875rem;
@@ -134,7 +134,7 @@ const filters = ['all', 'web', 'mobile', 'design']
 .project-card:hover {
     border-color: var(--primary);
     transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 20px 50px rgba(59, 130, 246, 0.2);
 }
 
 .project-image {
@@ -217,12 +217,12 @@ const filters = ['all', 'web', 'mobile', 'design']
 
 .tech-badge {
     padding: 0.375rem 0.75rem;
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(59, 130, 246, 0.1);
     color: var(--primary);
     border-radius: 0.375rem;
     font-size: 0.8rem;
     font-weight: 500;
-    border: 1px solid rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 @keyframes fadeInUp {

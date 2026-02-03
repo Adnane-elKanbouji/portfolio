@@ -82,7 +82,7 @@ if (typeof window !== 'undefined') {
 
 .language-button:hover {
     border-color: var(--primary);
-    box-shadow: 0 6px 30px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 6px 30px rgba(59, 130, 246, 0.3);
     transform: translateY(-2px);
 }
 
@@ -133,11 +133,11 @@ if (typeof window !== 'undefined') {
 }
 
 .dropdown-item:hover {
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(59, 130, 246, 0.1);
 }
 
 .dropdown-item.active {
-    background: rgba(99, 102, 241, 0.15);
+    background: rgba(59, 130, 246, 0.15);
     color: var(--primary);
 }
 
@@ -163,7 +163,6 @@ if (typeof window !== 'undefined') {
 
 @media (max-width: 768px) {
     .language-selector {
-        top: 1rem;
         left: 1rem;
     }
 

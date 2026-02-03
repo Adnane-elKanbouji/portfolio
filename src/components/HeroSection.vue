@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from '../composables/useI18n'
 
 const { t, currentLanguage } = useI18n()
@@ -31,6 +31,107 @@ const typeEffect = () => {
     setTimeout(typeEffect, isDeleting ? 50 : 150)
 }
 
+// Canvas particle animation
+const canvasRef = ref<HTMLCanvasElement | null>(null)
+let animationId: number | null = null
+
+interface Particle {
+    x: number
+    y: number
+    vx: number
+    vy: number
+    size: number
+    opacity: number
+}
+
+const initCanvas = () => {
+    const canvas = canvasRef.value
+    if (!canvas) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const resizeCanvas = () => {
+        const section = canvas.parentElement
+        if (section) {
+            canvas.width = section.offsetWidth
+            canvas.height = section.offsetHeight
+        }
+    }
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
+
+    // Get theme-aware colors
+    const getThemeColors = () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
+        return {
+            background: isDark ? 'rgba(11, 17, 38, 0.1)' : 'rgba(255, 255, 255, 0.1)',
+            particle: isDark ? 'rgba(59, 130, 246,' : 'rgba(37, 99, 235,',
+            connection: isDark ? 'rgba(59, 130, 246,' : 'rgba(37, 99, 235,'
+        }
+    }
+
+    // Particle system
+    const particles: Particle[] = []
+    const particleCount = 50
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            size: Math.random() * 2 + 1,
+            opacity: Math.random() * 0.5 + 0.2,
+        })
+    }
+
+    const animate = () => {
+        const colors = getThemeColors()
+        ctx.fillStyle = colors.background
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        particles.forEach((particle, i) => {
+            particle.x += particle.vx
+            particle.y += particle.vy
+
+            if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1
+            if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1
+
+            ctx.beginPath()
+            ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
+            ctx.fillStyle = `${colors.particle} ${particle.opacity})`
+            ctx.fill()
+
+            // Draw connections between nearby particles
+            particles.slice(i + 1).forEach((other) => {
+                const dx = particle.x - other.x
+                const dy = particle.y - other.y
+                const distance = Math.sqrt(dx * dx + dy * dy)
+
+                if (distance < 150) {
+                    ctx.beginPath()
+                    ctx.moveTo(particle.x, particle.y)
+                    ctx.lineTo(other.x, other.y)
+                    ctx.strokeStyle = `${colors.connection} ${0.1 * (1 - distance / 150)})`
+                    ctx.stroke()
+                }
+            })
+        })
+
+        animationId = requestAnimationFrame(animate)
+    }
+
+    animate()
+
+    return () => {
+        window.removeEventListener('resize', resizeCanvas)
+        if (animationId) {
+            cancelAnimationFrame(animationId)
+        }
+    }
+}
+
 // Reset typing when language changes
 watch(currentLanguage, () => {
     typedText.value = ''
@@ -41,6 +142,17 @@ watch(currentLanguage, () => {
 
 onMounted(() => {
     typeEffect()
+    const cleanup = initCanvas()
+
+    return () => {
+        if (cleanup) cleanup()
+    }
+})
+
+onUnmounted(() => {
+    if (animationId) {
+        cancelAnimationFrame(animationId)
+    }
 })
 
 const scrollToContact = () => {
@@ -50,6 +162,9 @@ const scrollToContact = () => {
 
 <template>
     <section class="hero">
+        <!-- Animated Canvas Background -->
+        <canvas ref="canvasRef" class="hero-canvas" />
+
         <div class="hero-bg">
             <div class="gradient-orb orb-1"></div>
             <div class="gradient-orb orb-2"></div>
@@ -176,27 +291,44 @@ const scrollToContact = () => {
     overflow: hidden;
 }
 
-.hero-bg {
+.hero-canvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 0;
+    background: linear-gradient(135deg, #0b1126 0%, #0f172a 50%, #1e3a5f 100%);
+    transition: background 0.3s ease;
+}
+
+[data-theme='light'] .hero-canvas {
+    background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 50%, #dbeafe 100%);
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
 }
 
 .gradient-orb {
     position: absolute;
     border-radius: 50%;
     filter: blur(100px);
-    opacity: 0.5;
+    opacity: 0.4;
     animation: float 20s ease-in-out infinite;
+    pointer-events: none;
 }
 
 .orb-1 {
     width: 500px;
     height: 500px;
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
     top: -250px;
     left: -250px;
     animation-delay: 0s;
@@ -205,7 +337,7 @@ const scrollToContact = () => {
 .orb-2 {
     width: 400px;
     height: 400px;
-    background: var(--secondary);
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
     bottom: -200px;
     right: -200px;
     animation-delay: 7s;
@@ -214,7 +346,7 @@ const scrollToContact = () => {
 .orb-3 {
     width: 350px;
     height: 350px;
-    background: var(--accent);
+    background: linear-gradient(135deg, var(--accent), var(--primary-light));
     top: 50%;
     right: 10%;
     animation-delay: 14s;
@@ -228,17 +360,17 @@ const scrollToContact = () => {
     }
 
     33% {
-        transform: translate(50px, -50px) scale(1.1);
+        transform: translate(80px, -80px) scale(1.15);
     }
 
     66% {
-        transform: translate(-50px, 50px) scale(0.9);
+        transform: translate(-80px, 80px) scale(0.9);
     }
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 1400px;
     width: 100%;
     padding: 0 3rem;
@@ -650,28 +782,50 @@ const scrollToContact = () => {
     text-decoration: none;
     display: inline-block;
     border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
     color: white;
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 30px rgba(99, 102, 241, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
 }
 
 .btn-secondary {
     background: transparent;
     color: var(--text-primary);
-    border: 2px solid var(--border);
+    border: 2px solid var(--primary);
 }
 
 .btn-secondary:hover {
-    border-color: var(--primary);
-    color: var(--primary);
+    background: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
 }
 
 .social-links {
@@ -689,12 +843,32 @@ const scrollToContact = () => {
     justify-content: center;
     color: var(--text-secondary);
     transition: all 0.3s ease;
+    position: relative;
+}
+
+.social-links a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-links a:hover::before {
+    opacity: 1;
+}
+
+.social-links a svg {
+    position: relative;
+    z-index: 1;
 }
 
 .social-links a:hover {
-    background: var(--primary);
     color: white;
     transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
 }
 
 .hero-visual {
@@ -965,7 +1139,7 @@ const scrollToContact = () => {
         grid-template-columns: 1fr;
         gap: 3rem;
         text-align: center;
-        padding: 0 1.5rem;
+        padding: 6rem 1.5rem;
     }
 
     .name {

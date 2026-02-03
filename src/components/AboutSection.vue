@@ -101,7 +101,7 @@ const { t } = useI18n()
 .section-label {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(59, 130, 246, 0.1);
     color: var(--primary);
     border-radius: 2rem;
     font-size: 0.875rem;
@@ -177,7 +177,7 @@ strong {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(59, 130, 246, 0.1);
     border-radius: 1rem;
 }
 
@@ -212,7 +212,7 @@ strong {
 .stat-card:hover {
     border-color: var(--primary);
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
 }
 
 .stat-number {
