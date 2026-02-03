@@ -91,7 +91,6 @@ const toggleMobileMenu = () => {
 }
 
 .navbar.scrolled {
-    background: rgba(10, 14, 39, 0.95);
     backdrop-filter: blur(20px);
     padding: 0.75rem 0;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
@@ -294,7 +293,7 @@ const toggleMobileMenu = () => {
         right: -100%;
         width: 320px;
         height: calc(100vh - 70px);
-        background: rgba(15, 23, 42, 0.98);
+        background: var(--bg-darker);
         backdrop-filter: blur(20px);
         flex-direction: column;
         align-items: flex-start;
@@ -310,7 +309,7 @@ const toggleMobileMenu = () => {
     }
 
     .nav-link {
-        color: white;
+        color: var(--text-primary);
         width: 100%;
         padding: 1.25rem 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
