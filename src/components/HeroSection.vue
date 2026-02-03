@@ -220,23 +220,10 @@ const scrollToContact = () => {
                         <div class="window-dots">
                             <span></span><span></span><span></span>
                         </div>
-                        <div class="mini-avatar">
-                            <div class="mini-avatar-bg"></div>
-                            <div class="mini-avatar-face">
-                                <div class="mini-hair"></div>
-                                <div class="mini-eyes">
-                                    <div class="mini-eye"></div>
-                                    <div class="mini-eye"></div>
-                                </div>
-                                <div class="mini-glasses">
-                                    <div class="mini-glass left"></div>
-                                    <div class="mini-glass right"></div>
-                                    <div class="mini-bridge"></div>
-                                </div>
-                                <div class="mini-smile"></div>
-                            </div>
-                        </div>
                         <div class="window-title">developer.ts</div>
+                        <div class="avatar2">
+                            <img src="../assets/avatar2.jpeg" alt="Adnane" class="avatar2-image" />
+                        </div>
                     </div>
                     <div class="window-content">
                         <div class="content-layout">
@@ -580,105 +567,27 @@ const scrollToContact = () => {
     gap: 1rem;
 }
 
-.mini-avatar {
-    position: relative;
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
+.avatar2 {
+    position: absolute;
+    right: 1rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--primary);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
 }
 
-.mini-avatar-bg {
-    position: absolute;
+.avatar2:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
+
+.avatar2-image {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    border-radius: 50%;
-    animation: rotate 10s linear infinite;
-}
-
-.mini-avatar-face {
-    position: absolute;
-    width: 85%;
-    height: 85%;
-    top: 7.5%;
-    left: 7.5%;
-    background: linear-gradient(180deg, #ffd6a5 0%, #ffb380 100%);
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-}
-
-.mini-hair {
-    position: absolute;
-    top: -2px;
-    width: 85%;
-    height: 40%;
-    background: #2d3748;
-    border-radius: 50% 50% 0 0;
-    z-index: 2;
-}
-
-.mini-eyes {
-    display: flex;
-    gap: 5px;
-    margin-top: 10px;
-    z-index: 3;
-}
-
-.mini-eye {
-    width: 3px;
-    height: 4px;
-    background: #1e293b;
-    border-radius: 50%;
-}
-
-.mini-glasses {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 75%;
-    height: 12px;
-    z-index: 4;
-}
-
-.mini-glass {
-    position: absolute;
-    width: 8px;
-    height: 7px;
-    border: 1px solid #1e293b;
-    border-radius: 50%;
-    background: rgba(99, 102, 241, 0.1);
-}
-
-.mini-glass.left {
-    left: 2px;
-}
-
-.mini-glass.right {
-    right: 2px;
-}
-
-.mini-bridge {
-    position: absolute;
-    width: 4px;
-    height: 1px;
-    background: #1e293b;
-    top: 3px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.mini-smile {
-    width: 8px;
-    height: 4px;
-    border: 1px solid #d97757;
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-    margin-top: 2px;
+    object-fit: cover;
 }
 
 @keyframes floatAvatar {
@@ -889,6 +798,7 @@ const scrollToContact = () => {
     display: flex;
     align-items: center;
     gap: 1rem;
+    position: relative;
 }
 
 .window-dots {
@@ -918,6 +828,29 @@ const scrollToContact = () => {
 .window-title {
     color: var(--text-muted);
     font-size: 0.875rem;
+}
+
+.avatar2 {
+    position: absolute;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--primary);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+}
+
+.avatar2:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
+
+.avatar2-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .window-content {
