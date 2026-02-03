@@ -144,7 +144,7 @@ const toggleMobileMenu = () => {
 }
 
 .nav-link {
-    color: white;
+    color: var(--text-primary);
     text-decoration: none;
     font-weight: 500;
     font-size: 0.9rem;
@@ -310,6 +310,7 @@ const toggleMobileMenu = () => {
     }
 
     .nav-link {
+        color: white;
         width: 100%;
         padding: 1.25rem 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
