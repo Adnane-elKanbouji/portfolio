@@ -1408,7 +1408,7 @@ const scrollToContact = () => {
   }
 
   .window-content {
-    padding: 1.5rem 2.5rem;
+    padding: 1.5rem;
     font-size: 1rem;
   }
 
